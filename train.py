@@ -13,7 +13,7 @@ def main():
         help='Path to map data generated with script_make_data.py')
     parser.add_argument('--batchsize', '-b', type=int, default=100,
                         help='Number of images in each mini-batch')
-    parser.add_argument('--epoch', '-e', type=int, default=30,
+    parser.add_argument('--epoch', '-e', type=int, default=50,
                         help='Number of sweeps over the dataset to train')
     args = parser.parse_args()
 
