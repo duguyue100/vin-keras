@@ -11,7 +11,7 @@ def main():
     parser.add_argument(
         '--data', '-d', type=str, default='./data/map_data.pkl',
         help='Path to map data generated with script_make_data.py')
-    parser.add_argument('--batchsize', '-b', type=int, default=100,
+    parser.add_argument('--batchsize', '-b', type=int, default=256,
                         help='Number of images in each mini-batch')
     parser.add_argument('--epoch', '-e', type=int, default=50,
                         help='Number of sweeps over the dataset to train')
