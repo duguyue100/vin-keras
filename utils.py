@@ -1,6 +1,7 @@
 import joblib
 import numpy as np
 
+
 def process_map_data(path):
     data = joblib.load(path)
 
@@ -13,13 +14,16 @@ def process_map_data(path):
     num_train = num - num / 5
 
     im_train = np.concatenate((np.expand_dims(im_data[:num_train], 1),
-                               np.expand_dims(value_data[:num_train], 1)),axis=1).astype(dtype=np.float32)
+                               np.expand_dims(value_data[:num_train], 1)),
+                              axis=1).astype(dtype=np.float32)
     state_train = state_data[:num_train]
     label_train = label_data[:num_train]
 
     im_test = np.concatenate((np.expand_dims(im_data[num_train:], 1),
-                              np.expand_dims(value_data[num_train:], 1)),axis=1).astype(dtype=np.float32)
+                              np.expand_dims(value_data[num_train:], 1)),
+                             axis=1).astype(dtype=np.float32)
     state_test = state_data[num_train:]
     label_test = label_data[num_train:]
 
-    return (im_train, state_train, label_train), (im_test, state_test, label_test)
+    return (im_train, state_train, label_train), \
+           (im_test, state_test, label_test)

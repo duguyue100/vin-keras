@@ -5,10 +5,12 @@ import keras.backend as K
 from vin import vin_model
 from utils import process_map_data
 
+
 def main():
     parser = argparse.ArgumentParser(description='train vin model')
-    parser.add_argument('--data', '-d', type=str, default='./data/map_data.pkl',
-                        help='Path to map data generated with script_make_data.py')
+    parser.add_argument(
+        '--data', '-d', type=str, default='./data/map_data.pkl',
+        help='Path to map data generated with script_make_data.py')
     parser.add_argument('--batchsize', '-b', type=int, default=100,
                         help='Number of images in each mini-batch')
     parser.add_argument('--epoch', '-e', type=int, default=30,
@@ -25,11 +27,12 @@ def main():
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
 
-    model.fit([train[0].transpose((0, 2, 3, 1)) if K.image_dim_ordering() == 'tf' else train[0],
+    model.fit([train[0].transpose((0, 2, 3, 1))
+               if K.image_dim_ordering() == 'tf' else train[0],
                train[1]],
               train[2],
               batch_size=args.batchsize,
-              nb_epoch=args.epoch)
+              epochs=args.epoch)
 
     with open('vin_model_structure.json', 'w') as f:
         f.write(model.to_json())
